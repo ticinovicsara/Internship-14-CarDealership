@@ -1,13 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/hero.css";
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+        if (entry.isIntersecting) {
+          setAnimate(false);
+          setTimeout(() => setAnimate(true), 50);
+
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
       },
@@ -24,8 +28,9 @@ const Hero = () => {
       }
     };
   }, []);
+
   return (
-    <div ref={heroRef} className="hero" id="home">
+    <div ref={heroRef} className={`hero ${animate ? "animate" : ""}`} id="home">
       <div className="overlay"></div>
       <h1 className="hero-title">Welcome to the Dealership</h1>
     </div>

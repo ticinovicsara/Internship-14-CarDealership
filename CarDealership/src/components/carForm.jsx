@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { ToastNotification, showToastError } from "./toast";
 import { carTypes } from "./initialize";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/carForm.css";
 
 const CarForm = ({ addCar }) => {
@@ -12,16 +14,36 @@ const CarForm = ({ addCar }) => {
     registration: "",
   });
 
-  const [error, setError] = useState("");
   const formRef = useRef(null);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (formRef.current && !hasScrolled) {
-      formRef.current.scrollIntoView({ behavior: "smooth" });
-      setHasScrolled(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (formRef.current) {
+      observer.observe(formRef.current);
     }
-  }, [hasScrolled]);
+
+    return () => {
+      if (formRef.current) {
+        observer.unobserve(formRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     setCar({ ...car, [e.target.name]: e.target.value });
@@ -30,7 +52,7 @@ const CarForm = ({ addCar }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!car.brand || !car.model || !car.year || !car.registration) {
-      setError("All fields are required!");
+      showToastError("All fields are required!");
       return;
     }
     setError("");
@@ -40,10 +62,11 @@ const CarForm = ({ addCar }) => {
 
   return (
     <div ref={formRef} className="car-form-container" id="add">
+      <ToastNotification />
       <h2 className="car-form-title">Add a vehicle</h2>
       <form className="car-form" onSubmit={handleSubmit}>
         <input
-          className="input-box"
+          className={`input-box ${isVisible ? "visible" : ""}`}
           type="text"
           name="brand"
           placeholder="Brand"
@@ -51,7 +74,7 @@ const CarForm = ({ addCar }) => {
           onChange={handleChange}
         />
         <input
-          className="input-box"
+          className={`input-box ${isVisible ? "visible" : ""}`}
           type="text"
           name="model"
           placeholder="Model"
@@ -62,7 +85,7 @@ const CarForm = ({ addCar }) => {
           name="type"
           value={car.type}
           onChange={handleChange}
-          className="input-box"
+          className={`input-box ${isVisible ? "visible" : ""}`}
         >
           {carTypes.map((type) => (
             <option key={type} value={type}>
@@ -71,7 +94,7 @@ const CarForm = ({ addCar }) => {
           ))}
         </select>
         <input
-          className="input-box"
+          className={`input-box ${isVisible ? "visible" : ""}`}
           type="number"
           name="year"
           placeholder="Year of production"
@@ -79,7 +102,7 @@ const CarForm = ({ addCar }) => {
           onChange={handleChange}
         />
         <input
-          className="input-box"
+          className={`input-box ${isVisible ? "visible" : ""}`}
           type="date"
           name="registration"
           placeholder="Registration expiration date"
@@ -89,7 +112,6 @@ const CarForm = ({ addCar }) => {
         <button type="submit" className="submit-btn">
           Add vehicle
         </button>
-        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );

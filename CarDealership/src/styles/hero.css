@@ -10,7 +10,12 @@
   justify-content: center;
   font-family: Orbitron-Regular;
   letter-spacing: 10px;
-  animation: fadeInBackground 1.2s ease;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.hero.animate {
+  animation: fadeInBackground 1.2s ease forwards;
 }
 
 .overlay {
@@ -32,6 +37,9 @@
     0 0 30px rgb(255, 255, 255);
   opacity: 0;
   transform: translateY(-20px);
+}
+
+.hero.animate .hero-title {
   animation: fadeIn 1.5s forwards;
 }
 
