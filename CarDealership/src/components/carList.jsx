@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import initialCars from "./initialize";
+import { initialCars } from "./initialize";
 import "../styles/car-list.css";
 
 const CarList = () => {
   const [cars, setCars] = useState(initialCars);
   const containerRef = useRef(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+        if (entry.isIntersecting && !hasScrolled) {
           containerRef.current.scrollIntoView({ behavior: "smooth" });
+          setHasScrolled(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     );
 
     if (containerRef.current) {
@@ -26,7 +28,7 @@ const CarList = () => {
         observer.unobserve(containerRef.current);
       }
     };
-  }, []);
+  }, [hasScrolled]);
 
   const isRegistrationExpired = (dateString) => {
     const today = new Date();
@@ -38,8 +40,8 @@ const CarList = () => {
   };
 
   return (
-    <div ref={containerRef} className="car-container">
-      <h2 class="car-container-title">All vechiles</h2>
+    <div ref={containerRef} className="car-container" id="vehicles">
+      <h2 className="car-container-title">All vechiles</h2>
 
       <motion.div
         className="car-list"

@@ -12,7 +12,7 @@
   margin-bottom: 70px;
   font-size: 2em;
   font-family: Orbitron-Regular;
-  letter-spacing: 10px;
+  letter-spacing: 15px;
 }
 
 .car-list {
@@ -23,6 +23,7 @@
   max-width: 100%;
   font-family: monospace;
   font-size: 1.5em;
+  will-change: transform;
 }
 
 .car-card {
@@ -30,9 +31,9 @@
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
   font-family: SpaceMono-Regular;
   font-size: 0.7em;
+  transition: scale 0.4s ease;
 }
 
 .car-card.expired {
@@ -40,6 +41,10 @@
   color: white;
   background: rgba(255, 0, 0, 0.1);
   animation: pulse 1.5s infinite alternate;
+}
+
+.car-card:hover {
+  scale: 1.07;
 }
 
 @keyframes pulse {

@@ -1,4 +1,4 @@
-const initialCars = [
+export const initialCars = [
   {
     id: 1,
     brand: "Renault",
@@ -29,4 +29,17 @@ const initialCars = [
   },
 ];
 
-export default initialCars;
+export const carTypes = [
+  "Convertible",
+  "Coupe",
+  "Crossover",
+  "Electric",
+  "Hybrid",
+  "Luxury",
+  "Sedan",
+  "Sports Car",
+  "SUV",
+  "Truck",
+  "Van / Minivan",
+  "Wagon / Hatchback",
+];

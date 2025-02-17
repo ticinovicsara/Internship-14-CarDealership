@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { carTypes } from "./initialize";
 import "../styles/carForm.css";
 
 const CarForm = ({ addCar }) => {
@@ -10,7 +11,17 @@ const CarForm = ({ addCar }) => {
     year: "",
     registration: "",
   });
+
   const [error, setError] = useState("");
+  const formRef = useRef(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    if (formRef.current && !hasScrolled) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+      setHasScrolled(true);
+    }
+  }, [hasScrolled]);
 
   const handleChange = (e) => {
     setCar({ ...car, [e.target.name]: e.target.value });
@@ -19,7 +30,7 @@ const CarForm = ({ addCar }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!car.brand || !car.model || !car.year || !car.registration) {
-      setError("Sva polja su obavezna!");
+      setError("All fields are required!");
       return;
     }
     setError("");
@@ -28,44 +39,59 @@ const CarForm = ({ addCar }) => {
   };
 
   return (
-    <form className="car-form" onSubmit={handleSubmit}>
-      <h2 class="car-form-title">Add a vechile</h2>
-      <input
-        type="text"
-        name="brand"
-        placeholder="Brand"
-        value={car.brand}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="model"
-        placeholder="Model"
-        value={car.model}
-        onChange={handleChange}
-      />
-      <select name="type" value={car.type} onChange={handleChange}>
-        <option value="SUV">SUV</option>
-        <option value="Sedan">Sedan</option>
-        <option value="Hatchback">Hatchback</option>
-      </select>
-      <input
-        type="number"
-        name="year"
-        placeholder="Year of production"
-        value={car.year}
-        onChange={handleChange}
-      />
-      <input
-        type="date"
-        name="registration"
-        placeholder="Datum isticanja registracije"
-        value={car.registration}
-        onChange={handleChange}
-      />
-      <button type="submit">Add vechile</button>
-      {error && <p className="error">{error}</p>}
-    </form>
+    <div ref={formRef} className="car-form-container" id="add">
+      <h2 className="car-form-title">Add a vehicle</h2>
+      <form className="car-form" onSubmit={handleSubmit}>
+        <input
+          className="input-box"
+          type="text"
+          name="brand"
+          placeholder="Brand"
+          value={car.brand}
+          onChange={handleChange}
+        />
+        <input
+          className="input-box"
+          type="text"
+          name="model"
+          placeholder="Model"
+          value={car.model}
+          onChange={handleChange}
+        />
+        <select
+          name="type"
+          value={car.type}
+          onChange={handleChange}
+          className="input-box"
+        >
+          {carTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+        <input
+          className="input-box"
+          type="number"
+          name="year"
+          placeholder="Year of production"
+          value={car.year}
+          onChange={handleChange}
+        />
+        <input
+          className="input-box"
+          type="date"
+          name="registration"
+          placeholder="Registration expiration date"
+          value={car.registration}
+          onChange={handleChange}
+        />
+        <button type="submit" className="submit-btn">
+          Add vehicle
+        </button>
+        {error && <p className="error">{error}</p>}
+      </form>
+    </div>
   );
 };
 
