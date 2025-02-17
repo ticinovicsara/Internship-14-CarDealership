@@ -33,7 +33,13 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: SpaceMono-Regular;
   font-size: 0.7em;
-  transition: scale 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 200px;
+  padding-bottom: 30px;
+  transition: transform 0.4s ease, box-shadow 0.3s ease-in-out;
 }
 
 .car-card.expired {
@@ -43,8 +49,8 @@
   animation: pulse 1.5s infinite alternate;
 }
 
-.car-card:hover {
-  scale: 1.07;
+.car-card:hover .delete-btn {
+  display: block;
 }
 
 @keyframes pulse {
@@ -54,4 +60,31 @@
   100% {
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
   }
+}
+
+.delete-btn {
+  display: block;
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.car-card:hover .delete-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.delete-btn:hover {
+  background: darkred;
 }

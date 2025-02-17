@@ -62,8 +62,11 @@ const CarList = () => {
             <h3>
               {car.brand} {car.model}
             </h3>
-            <p>Godina: {car.year}</p>
-            <p>Registracija: {car.registration}</p>
+            <p>Year: {car.year}</p>
+            <p>Registration: {car.registration}</p>
+            <button className="delete-btn" onClick={() => removeCar(car.id)}>
+              Remove
+            </button>
           </motion.div>
         ))}
       </motion.div>
