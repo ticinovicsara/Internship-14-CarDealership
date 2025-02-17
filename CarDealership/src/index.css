@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Orbitron-Regular";
+  src: url("./assets/fonts/orbitron/Orbitron-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Orbitron-Bold";
+  src: url("./assets/fonts/orbitron/Orbitron-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceMono-Regular";
+  src: url("./assets/fonts/SpaceMono/SpaceMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceMono-Bold";
+  src: url("./assets/fonts/SpaceMono/SpaceMono-Bold.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: black;
+}

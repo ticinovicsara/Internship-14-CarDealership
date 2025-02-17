@@ -1,0 +1,16 @@
+.car-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.car-form-title {
+  color: white;
+  margin-bottom: 50px;
+  font-size: 2em;
+  font-family: Orbitron-Regular;
+  letter-spacing: 10px;
+}

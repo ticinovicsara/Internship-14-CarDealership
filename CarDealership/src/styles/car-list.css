@@ -1,0 +1,52 @@
+.car-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-container-title {
+  color: white;
+  margin-bottom: 70px;
+  font-size: 2em;
+  font-family: Orbitron-Regular;
+  letter-spacing: 10px;
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  max-width: 100%;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+.car-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  font-family: SpaceMono-Regular;
+  font-size: 0.7em;
+}
+
+.car-card.expired {
+  border: 2px solid red;
+  color: white;
+  background: rgba(255, 0, 0, 0.1);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+}
