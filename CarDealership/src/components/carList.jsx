@@ -5,6 +5,10 @@ import "../styles/car-list.css";
 const CarList = ({ cars, removeCar }) => {
   const containerRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [filterBrand, setFilterBrand] = useState("");
+  const [filterModel, setFilterModel] = useState("");
+  const [filteredCars, setFilteredCars] = useState(cars);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,25 +32,68 @@ const CarList = ({ cars, removeCar }) => {
     };
   }, [hasScrolled]);
 
+  const sortedCars = [...cars].sort((a, b) => {
+    if (a.year !== b.year) return a.year - b.year;
+    if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
+    return a.model.localeCompare(b.model);
+  });
+
+  const applyFilter = () => {
+    let newFilteredCars = sortedCars.filter(
+      (car) =>
+        (filterBrand === "" ||
+          car.brand.toLowerCase().includes(filterBrand.toLowerCase())) &&
+        (filterModel === "" ||
+          car.model.toLowerCase().includes(filterModel.toLowerCase()))
+    );
+
+    setFilteredCars(newFilteredCars);
+    setShowFilters(false);
+  };
+
   const isRegistrationExpired = (dateString) => {
     const today = new Date();
     const expiryDate = new Date(dateString);
     return (expiryDate - today) / (1000 * 60 * 60 * 24) <= 30;
   };
 
-  const sortedCars = cars.sort((a, b) => {
-    if (a.year !== b.year) {
-      return a.year - b.year;
-    }
-    if (a.brand !== b.brand) {
-      return a.brand.localeCompare(b.brand);
-    }
-    return a.model.localeCompare(b.model);
-  });
-
   return (
     <div ref={containerRef} className="car-container" id="vehicles">
-      <h2 className="car-container-title">All vechiles</h2>
+      <div className="header">
+        <h2 className="car-container-title">All vehicles</h2>
+        <button className="filter-btn" onClick={() => setShowFilters(true)}>
+          Filters
+        </button>
+      </div>
+
+      {showFilters && (
+        <div className="filter-popup">
+          <div className="filter-popup-content">
+            <h3>Filter Vehicles</h3>
+            <input
+              type="text"
+              placeholder="Brand"
+              value={filterBrand}
+              onChange={(e) => setFilterBrand(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Model"
+              value={filterModel}
+              onChange={(e) => setFilterModel(e.target.value)}
+            />
+            <button className="apply-filter-btn" onClick={applyFilter}>
+              Apply Filter
+            </button>
+            <button
+              className="close-filter-btn"
+              onClick={() => setShowFilters(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       <motion.div
         className="car-list"
@@ -54,7 +101,7 @@ const CarList = ({ cars, removeCar }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {sortedCars.map((car, index) => (
+        {filteredCars.map((car, index) => (
           <motion.div
             key={car.id}
             className={`car-card ${
