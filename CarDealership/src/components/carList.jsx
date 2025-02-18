@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import "../styles/car-list.css";
-import "../styles/car-list-filter.css";
+import "../styles/carList/car-list.css";
+import "../styles/carList/car-list-filter.css";
 
 const CarList = ({ cars, removeCar }) => {
   const containerRef = useRef(null);

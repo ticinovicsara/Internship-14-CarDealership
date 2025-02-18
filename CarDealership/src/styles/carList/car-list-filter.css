@@ -86,3 +86,9 @@
 .close-filter-btn:hover {
   color: #a00000;
 }
+
+@media (max-width: 768px) {
+  .header {
+    display: block;
+  }
+}
