@@ -20,15 +20,15 @@ function App() {
 
   const addCar = (newCar) => {
     if (cars.length >= 10) {
-      showToastError("Max 10 vechiles allowed!");
+      showToastError("Max 10 vehicles allowed!");
       return;
     }
     setCars([...cars, newCar]);
-    showToastSuccess("Car added successfully!");
+    showToastSuccess("Vehicle added successfully!");
   };
 
   const removeCar = (id) => {
-    showToastSuccess("Car removed successfully!");
+    showToastSuccess("Vehicle removed successfully!");
     setCars(cars.filter((car) => car.id !== id));
   };
 

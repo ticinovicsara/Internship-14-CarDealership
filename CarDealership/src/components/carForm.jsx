@@ -104,9 +104,9 @@ const CarForm = ({ addCar }) => {
           className={`input-box ${isVisible ? "visible" : ""}`}
           type="date"
           name="registration"
-          placeholder="Registration expiration date"
           value={car.registration}
           onChange={handleChange}
+          title="Registration expiration date"
         />
         <button type="submit" className="submit-btn">
           Add vehicle

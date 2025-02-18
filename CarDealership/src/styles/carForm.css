@@ -15,6 +15,24 @@
   gap: 20px;
 }
 
+.input-box:hover::after {
+  content: "Registration expiration date";
+  font-family: SpaceMono-Regular;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
 .car-form input,
 .car-form select,
 .car-form button {
