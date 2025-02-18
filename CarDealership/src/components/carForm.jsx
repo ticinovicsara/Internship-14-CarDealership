@@ -55,7 +55,6 @@ const CarForm = ({ addCar }) => {
       showToastError("All fields are required!");
       return;
     }
-    showToastSuccess("Vehicle added successfully!");
     addCar({ id: uuidv4(), ...car });
     setCar({ brand: "", model: "", type: "SUV", year: "", registration: "" });
   };

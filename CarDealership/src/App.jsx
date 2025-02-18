@@ -3,7 +3,7 @@ import Navbar from "./components/navbar";
 import CarList from "./components/carList";
 import CarForm from "./components/carForm";
 import { initialCars } from "./components/initialize";
-import { showToastSuccess } from "./components/toast";
+import { showToastError, showToastSuccess } from "./components/toast";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -20,10 +20,11 @@ function App() {
 
   const addCar = (newCar) => {
     if (cars.length >= 10) {
-      alert("Max 10 vechiles allowed!");
+      showToastError("Max 10 vechiles allowed!");
       return;
     }
     setCars([...cars, newCar]);
+    showToastSuccess("Car added successfully!");
   };
 
   const removeCar = (id) => {
