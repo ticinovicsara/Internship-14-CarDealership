@@ -1,0 +1,88 @@
+.filter-btn {
+  padding: 8px 15px;
+  position: absolute;
+  right: 40px;
+  background-color: #d80000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: Orbitron-Bold;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-btn:hover {
+  background-color: #a00000;
+}
+
+.filter-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.filter-popup-content {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid red;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  font-family: Orbitron-Regular;
+  letter-spacing: 2px;
+}
+
+.filter-popup-content input {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-family: SpaceMono-Regular;
+}
+
+.reset-filter-btn {
+  padding: 10px;
+  background-color: #d80000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Orbitron-Bold;
+  letter-spacing: 2px;
+}
+
+.reset-filter-btn:hover {
+  background-color: #a00000;
+}
+
+.close-filter-btn {
+  position: absolute;
+  top: 180px;
+  right: 370px;
+  scale: 1.5;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #d80000;
+  z-index: 20;
+}
+
+.close-filter-btn:hover {
+  color: #a00000;
+}

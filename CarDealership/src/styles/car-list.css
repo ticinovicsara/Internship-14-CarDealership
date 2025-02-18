@@ -1,5 +1,6 @@
 .car-container {
-  width: 100%;
+  width: 100vw;
+  min-width: 100%;
   min-height: 100vh;
   padding-top: 50px;
   display: flex;
@@ -18,24 +19,6 @@
   width: 100%;
   margin-bottom: 30px;
   text-align: center;
-}
-
-.filter-btn {
-  padding: 8px 15px;
-  position: absolute;
-  right: 40px;
-  background-color: #d80000;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-family: Orbitron-Bold;
-  letter-spacing: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.filter-btn:hover {
-  background-color: #a00000;
 }
 
 .no-cars {
@@ -57,7 +40,8 @@
   gap: 15px;
   padding: 20px;
   justify-content: center;
-  max-width: 100%;
+  width: 100%;
+  min-width: 100%;
   font-family: monospace;
   font-size: 1.5em;
   will-change: transform;
@@ -137,62 +121,7 @@
   background: darkred;
 }
 
-.filter-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.filter-popup-content {
-  background-color: black;
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid red;
-  width: 500px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
+.no-cars {
   font-family: Orbitron-Regular;
   letter-spacing: 2px;
-}
-
-.filter-popup-content input {
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: center;
-  font-family: SpaceMono-Regular;
-}
-
-.apply-filter-btn,
-.close-filter-btn {
-  padding: 10px;
-  background-color: #d80000;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: Orbitron-Bold;
-  letter-spacing: 2px;
-}
-
-.close-filter-btn {
-  margin-top: -20px;
-}
-
-.apply-filter-btn:hover,
-.close-filter-btn:hover {
-  background-color: #a00000;
 }

@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-family: Orbitron-Regular;
   letter-spacing: 10px;
   opacity: 0;
