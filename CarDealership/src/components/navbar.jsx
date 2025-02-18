@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/navbar/navbar.css";
 import "../styles/navbar/dropdown.css";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -12,6 +13,24 @@ const Navbar = () => {
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        closeDropdown();
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   return (
     <nav className="navbar">
@@ -35,7 +54,10 @@ const Navbar = () => {
       </div>
 
       {isDropdownOpen && (
-        <div className={`mobile-dropdown ${isDropdownOpen ? "open" : ""}`}>
+        <div
+          ref={dropdownRef}
+          className={`mobile-dropdown ${isDropdownOpen ? "open" : ""}`}
+        >
           <ul className="dropdown-content">
             <li>
               <a href="#home" onClick={closeDropdown}>
