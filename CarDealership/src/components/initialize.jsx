@@ -31,38 +31,6 @@ export const initialCars = [
     year: 2022,
     registration: "2025-12-01",
   },
-  {
-    id: 5,
-    brand: "Renault",
-    model: "Clio",
-    type: "Hybrid",
-    year: 2018,
-    registration: "2024-03-10",
-  },
-  {
-    id: 6,
-    brand: "Mercedes",
-    model: "Benz",
-    type: "SUV",
-    year: 2018,
-    registration: "2024-02-20",
-  },
-  {
-    id: 7,
-    brand: "Ferrari",
-    model: "Enzo",
-    type: "Sports Car",
-    year: 2005,
-    registration: "2025-06-15",
-  },
-  {
-    id: 8,
-    brand: "Tesla",
-    model: "Model S",
-    type: "Electric",
-    year: 2022,
-    registration: "2025-12-01",
-  },
 ];
 
 export const carTypes = [

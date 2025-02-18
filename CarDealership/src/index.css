@@ -18,12 +18,20 @@
   src: url("./assets/fonts/SpaceMono/SpaceMono-Bold.ttf") format("truetype");
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
   background-color: black;
+}
+
+html,
+body {
+  overflow-x: hidden;
 }

@@ -1,3 +1,6 @@
 .toast-container .Toastify__toast {
   font-family: SpaceMono-Regular;
+  background-color: black;
+  color: white;
+  border: 1px solid red;
 }
