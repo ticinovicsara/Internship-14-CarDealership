@@ -7,10 +7,7 @@ import { showToastSuccess } from "./components/toast";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [cars, setCars] = useState(() => {
-    const storedCars = JSON.parse(localStorage.getItem("cars"));
-    return storedCars && storedCars.length > 0 ? storedCars : initialCars;
-  });
+  const [cars, setCars] = useState(initialCars);
 
   useEffect(() => {
     const storedCars = JSON.parse(localStorage.getItem("cars")) || [];

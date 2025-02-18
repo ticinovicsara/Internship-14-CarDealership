@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ToastNotification, showToastError } from "./toast";
+import { ToastNotification, showToastError, showToastSuccess } from "./toast";
 import { carTypes } from "./initialize";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/carForm.css";
@@ -55,7 +55,7 @@ const CarForm = ({ addCar }) => {
       showToastError("All fields are required!");
       return;
     }
-    setError("");
+    showToastSuccess("Vehicle added successfully!");
     addCar({ id: uuidv4(), ...car });
     setCar({ brand: "", model: "", type: "SUV", year: "", registration: "" });
   };

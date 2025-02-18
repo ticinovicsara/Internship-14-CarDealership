@@ -64,25 +64,30 @@
 
 .delete-btn {
   display: block;
-  background: red;
+  background: rgb(169, 0, 0);
   color: white;
   border: none;
   padding: 8px 12px;
-  margin-top: 10px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
+  transform: translateX(-50%) translateY(5px);
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: background 0.3s ease, transform 0.5s ease;
 }
 
 .car-card:hover .delete-btn {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+.car-card:not(:hover) .delete-btn {
+  opacity: 0;
+  transform: translateX(-50%) translateY(5px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .delete-btn:hover {
