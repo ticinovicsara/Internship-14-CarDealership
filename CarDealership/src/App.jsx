@@ -7,12 +7,12 @@ import { showToastError, showToastSuccess } from "./components/toast";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [cars, setCars] = useState(initialCars);
+  const getStoredCars = () => {
+    const storedCars = localStorage.getItem("cars");
+    return storedCars ? JSON.parse(storedCars) : initialCars;
+  };
 
-  useEffect(() => {
-    const storedCars = JSON.parse(localStorage.getItem("cars")) || [];
-    setCars(storedCars);
-  }, []);
+  const [cars, setCars] = useState(getStoredCars);
 
   useEffect(() => {
     localStorage.setItem("cars", JSON.stringify(cars));
