@@ -60,21 +60,30 @@
   transform: translateX(0);
 }
 
-.tooltip-container {
-  width: 50%;
-  position: relative;
-  display: inline-block;
-  background-color: transparent;
-}
-
 .date-input {
-  opacity: 1 !important;
-  transform: none !important;
   width: 100%;
-  padding: 10px;
-  text-align: center;
   box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);
   font-family: SpaceMono-Regular;
+  visibility: visible;
+  text-align: center;
+}
+
+.tooltip-container {
+  visibility: hidden;
+  margin-bottom: 20px;
+  margin-left: -10px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0px rgba(0, 0, 0, 0);
+  font-family: SpaceMono-Regular;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.tooltip-container.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .tooltip-text {
@@ -82,13 +91,11 @@
   left: 50%;
   top: 110%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   font-family: SpaceMono-Regular;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
-  white-space: nowrap;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -101,7 +108,7 @@
 
 .submit-btn {
   width: 20%;
-  background-color: rgba(216, 0, 0, 0.871);
+  background-color: #d80000;
   color: white;
   font-family: Orbitron-Bold;
   font-size: 1.5em;
@@ -110,7 +117,7 @@
 
 .submit-btn:hover {
   cursor: pointer;
-  background-color: rgba(216, 0, 0, 0.514);
+  background-color: #a00000;
 }
 
 .input-box:nth-child(1) {

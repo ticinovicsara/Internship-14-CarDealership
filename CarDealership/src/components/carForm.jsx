@@ -100,9 +100,13 @@ const CarForm = ({ addCar }) => {
           value={car.year}
           onChange={handleChange}
         />
-        <div className="tooltip-container">
+        <div
+          className={`tooltip-container input-box ${
+            isVisible ? "visible" : ""
+          }`}
+        >
           <input
-            className="input-box date-input"
+            className="date-input"
             type="date"
             name="registration"
             value={car.registration}

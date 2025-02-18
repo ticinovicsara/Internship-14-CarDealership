@@ -33,11 +33,13 @@ const CarList = ({ cars, removeCar }) => {
     };
   }, [hasScrolled]);
 
-  const sortedCars = [...cars].sort((a, b) => {
-    if (a.year !== b.year) return a.year - b.year;
-    if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
-    return a.model.localeCompare(b.model);
-  });
+  const sortCars = (carsArray) => {
+    return [...carsArray].sort((a, b) => {
+      if (a.year !== b.year) return a.year - b.year;
+      if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
+      return a.model.localeCompare(b.model);
+    });
+  };
 
   useEffect(() => {
     const newFilteredCars = cars.filter(
@@ -47,7 +49,7 @@ const CarList = ({ cars, removeCar }) => {
         (filterModel === "" ||
           car.model.toLowerCase().includes(filterModel.toLowerCase()))
     );
-    setFilteredCars(newFilteredCars);
+    setFilteredCars(sortCars(newFilteredCars));
   }, [filterBrand, filterModel, cars]);
 
   const resetFilters = () => {
@@ -92,9 +94,6 @@ const CarList = ({ cars, removeCar }) => {
               value={filterModel}
               onChange={(e) => setFilterModel(e.target.value)}
             />
-            {/* <button className="apply-filter-btn" onClick={applyFilter}>
-              Apply Filter
-            </button> */}
             <button className="reset-filter-btn" onClick={resetFilters}>
               {" "}
               Reset filters
