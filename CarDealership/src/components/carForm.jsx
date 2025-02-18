@@ -100,14 +100,18 @@ const CarForm = ({ addCar }) => {
           value={car.year}
           onChange={handleChange}
         />
-        <input
-          className={`input-box ${isVisible ? "visible" : ""}`}
-          type="date"
-          name="registration"
-          value={car.registration}
-          onChange={handleChange}
-          title="Registration expiration date"
-        />
+        <div className="tooltip-container">
+          <input
+            className="input-box date-input"
+            type="date"
+            name="registration"
+            value={car.registration}
+            onChange={handleChange}
+          />
+          <div className="tooltip-text">
+            Here goes registration expiration date
+          </div>
+        </div>
         <button type="submit" className="submit-btn">
           Add vehicle
         </button>
