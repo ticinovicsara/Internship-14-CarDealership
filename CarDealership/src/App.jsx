@@ -2,10 +2,15 @@ import Hero from "./components/hero";
 import Navbar from "./components/navbar";
 import CarList from "./components/carList";
 import CarForm from "./components/carForm";
+import { initialCars } from "./components/initialize";
+import { showToastSuccess } from "./components/toast";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState(() => {
+    const storedCars = JSON.parse(localStorage.getItem("cars"));
+    return storedCars && storedCars.length > 0 ? storedCars : initialCars;
+  });
 
   useEffect(() => {
     const storedCars = JSON.parse(localStorage.getItem("cars")) || [];
@@ -25,6 +30,7 @@ function App() {
   };
 
   const removeCar = (id) => {
+    showToastSuccess("Car removed successfully!");
     setCars(cars.filter((car) => car.id !== id));
   };
 

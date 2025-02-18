@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { initialCars } from "./initialize";
 import "../styles/car-list.css";
 
-const CarList = () => {
-  const [cars, setCars] = useState(initialCars);
+const CarList = ({ cars, removeCar }) => {
   const containerRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -33,10 +32,7 @@ const CarList = () => {
   const isRegistrationExpired = (dateString) => {
     const today = new Date();
     const expiryDate = new Date(dateString);
-    const diffTime = expiryDate - today;
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-    return diffDays <= 30;
+    return (expiryDate - today) / (1000 * 60 * 60 * 24) <= 30;
   };
 
   return (
