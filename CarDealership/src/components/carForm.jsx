@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ToastNotification, showToastError, showToastSuccess } from "./toast";
+import { ToastNotification, showToastError } from "./toast";
 import { carTypes } from "./initialize";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/carForm.css";

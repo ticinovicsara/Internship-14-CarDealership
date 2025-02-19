@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import "../styles/carList/car-list.css";
-import "../styles/carList/car-list-filter.css";
+import "../styles/carList/filter.css";
 
 const CarList = ({ cars, removeCar }) => {
   const containerRef = useRef(null);
@@ -63,6 +63,10 @@ const CarList = ({ cars, removeCar }) => {
     return (expiryDate - today) / (1000 * 60 * 60 * 24) <= 30;
   };
 
+  useEffect(() => {
+    console.log("Filter status:", showFilters);
+  }, [showFilters]);
+
   return (
     <div ref={containerRef} className="car-container" id="vehicles">
       <div className="header">
@@ -75,12 +79,6 @@ const CarList = ({ cars, removeCar }) => {
       {showFilters && (
         <div className="filter-popup">
           <div className="filter-popup-content">
-            <button
-              className="close-filter-btn"
-              onClick={() => setShowFilters(false)}
-            >
-              𝘅
-            </button>
             <h3>Filter Vehicles</h3>
             <input
               type="text"
@@ -97,6 +95,9 @@ const CarList = ({ cars, removeCar }) => {
             <button className="reset-filter-btn" onClick={resetFilters}>
               {" "}
               Reset filters
+            </button>
+            <button className="close-btn" onClick={() => setShowFilters(false)}>
+              Close
             </button>
           </div>
         </div>
