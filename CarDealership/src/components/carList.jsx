@@ -63,10 +63,6 @@ const CarList = ({ cars, removeCar }) => {
     return (expiryDate - today) / (1000 * 60 * 60 * 24) <= 30;
   };
 
-  useEffect(() => {
-    console.log("Filter status:", showFilters);
-  }, [showFilters]);
-
   return (
     <div ref={containerRef} className="car-container" id="vehicles">
       <div className="header">
